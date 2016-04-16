@@ -32,7 +32,8 @@ public class Session {
 
         if ( foundUser != null ) {
             String sessionId = request.getSession().getId();
-            sessionService.openSession(sessionId, foundUser);
+            String ip = request.getLocalAddr();
+            sessionService.openSession(sessionId, foundUser, ip);
 
             answer.put("id", foundUser.getId());
             return Response.status(Response.Status.OK).entity(answer.toString()).build();
