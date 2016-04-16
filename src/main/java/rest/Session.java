@@ -47,11 +47,19 @@ public class Session {
     @Produces("application/json")
     public Response isAuthorized(@Context HttpServletRequest request) {
         String sessionId = request.getSession().getId();
-        UserProfile currentUser = sessionService.getSessionData(sessionId);
+        String ip = request.getLocalAddr();
+
+        Pair<UserProfile, String> currentSessionInfo = sessionService.getSessionData(sessionId);
+        UserProfile currentUser = currentSessionInfo.getFirst();
+        String currentSessionIp = currentSessionInfo.getSecond();
 
         JSONObject answer = new JSONObject();
 
         if ( currentUser == null ) {
+            return Response.status(Response.Status.UNAUTHORIZED).entity(answer.toString()).build();
+        }
+
+        if ( currentSessionIp != ip) {
             return Response.status(Response.Status.UNAUTHORIZED).entity(answer.toString()).build();
         }
 

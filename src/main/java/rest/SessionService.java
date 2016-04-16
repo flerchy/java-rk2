@@ -51,7 +51,7 @@ public class SessionService {
         currentSessions.remove(id);
     }
 
-    public UserProfile getSessionData(String id) {
-        return currentSessions.get(id).getFirst();
+    public Pair<UserProfile, String> getSessionData(String id) {
+        return currentSessions.get(id);
     }
 }
