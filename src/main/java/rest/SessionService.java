@@ -28,6 +28,7 @@ class Pair<T1, T2> {
 public class SessionService {
     private Map<String, Pair<UserProfile, String>> currentSessions = new HashMap<>();
     private Map<String, String> currentIpSessions = new HashMap<>();
+
     public SessionService() {
 
     }
