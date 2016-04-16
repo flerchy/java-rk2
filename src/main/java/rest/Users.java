@@ -36,7 +36,7 @@ public class Users {
         JSONObject answer = new JSONObject();
 
         String sessionId = request.getSession().getId();
-        UserProfile sessionUser = sessionService.getSessionData(sessionId);
+        UserProfile sessionUser = sessionService.getSessionData(sessionId).getFirst();
 
         if( sessionUser == null ){
             return Response.status(Response.Status.NOT_FOUND).entity(answer.toString()).build();
@@ -99,7 +99,7 @@ public class Users {
         }
 
         String sessionId = request.getSession().getId();
-        UserProfile sessionUser = sessionService.getSessionData(sessionId);
+        UserProfile sessionUser = sessionService.getSessionData(sessionId).getFirst();
         if ( sessionUser == null || sessionUser.getId() != id ) {
             answer.put("status", 403);
             answer.put("message", "Чужой юзер");
@@ -122,7 +122,7 @@ public class Users {
         JSONObject answer = new JSONObject();
 
         String sessionId = request.getSession().getId();
-        UserProfile sessionUser = sessionService.getSessionData(sessionId);
+        UserProfile sessionUser = sessionService.getSessionData(sessionId).getFirst();
 
         if ( sessionUser == null || sessionUser.getId() != id ) {
             answer.put("status", 403);
