@@ -45,8 +45,10 @@ public class SessionService {
     }
 
     public void closeSession(String id) {
-        currentIpSessions.remove(currentSessions.get(id).getSecond());
-        currentSessions.remove(id);
+        if (currentSessions.get(id) != null) {
+            currentIpSessions.remove(currentSessions.get(id).getSecond());
+            currentSessions.remove(id);
+        }
     }
 
     public Pair<UserProfile, String> getSessionData(String id) {
