@@ -35,6 +35,7 @@ public class SessionService {
         for (int i = 0; i < userSessions.get(user).size(); ++i) {
             if (currentSessions.get(userSessions.get(user).get(i)).getSecond() != ip )
                 closeSession(userSessions.get(user).get(i));
+                --i;
         }
         userSessions.get(user).add(id);
         currentSessions.put(id, pair);
