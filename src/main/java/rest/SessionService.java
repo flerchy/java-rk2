@@ -16,9 +16,7 @@ class Pair<T1, T2> {
         object2 = two;
     }
 
-    public T1 getFirst() {
-        return object1;
-    }
+    public T1 getFirst() { return object1; }
 
     public T2 getSecond() {
         return object2;
@@ -34,7 +32,7 @@ public class SessionService {
     }
 
     public void openSession(String id, UserProfile user, String ip) {
-        Pair<UserProfile, String> pair = new Pair<>(user, ip);
+        Pair<UserProfile, String> pair = new Pair<UserProfile, String>(user, ip);
         if (currentIpSessions.get(ip) == null) {
             currentIpSessions.put(ip, id);
             currentSessions.put(id, pair);
