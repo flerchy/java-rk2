@@ -34,7 +34,6 @@ public class Session {
             String sessionId = request.getSession().getId();
             String ip = request.getRemoteAddr();
             sessionService.openSession(sessionId, foundUser, ip);
-
             answer.put("id", foundUser.getId());
             return Response.status(Response.Status.OK).entity(answer.toString()).build();
         }
