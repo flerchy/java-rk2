@@ -25,7 +25,6 @@ class Pair<T1, T2> {
 
 public class SessionService {
     private Map<String, Pair<UserProfile, String>> currentSessions = new HashMap<>();
-    private Map<String, String> currentIpSessions = new HashMap<>();
 
     public SessionService() {
 
@@ -33,20 +32,11 @@ public class SessionService {
 
     public void openSession(String id, UserProfile user, String ip) {
         Pair<UserProfile, String> pair = new Pair<UserProfile, String>(user, ip);
-        if (currentIpSessions.get(ip) == null) {
-            currentIpSessions.put(ip, id);
-            currentSessions.put(id, pair);
-        } else {
-            currentIpSessions.remove(ip);
-            currentSessions.remove(id);
-            currentIpSessions.put(ip, id);
-            currentSessions.put(id, pair);
-        }
+        currentSessions.put(id, pair);
     }
 
     public void closeSession(String id) {
         if (currentSessions.get(id) != null) {
-            currentIpSessions.remove(currentSessions.get(id).getSecond());
             currentSessions.remove(id);
         }
     }

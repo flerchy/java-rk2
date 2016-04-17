@@ -32,7 +32,7 @@ public class Session {
 
         if ( foundUser != null ) {
             String sessionId = request.getSession().getId();
-            String ip = request.getLocalAddr();
+            String ip = request.getRemoteAddr();
             sessionService.openSession(sessionId, foundUser, ip);
 
             answer.put("id", foundUser.getId());
@@ -50,7 +50,7 @@ public class Session {
         JSONObject answer = new JSONObject();
 
         String sessionId = request.getSession().getId();
-        String ip = request.getLocalAddr();
+        String ip = request.getRemoteAddr();
 
         Pair<UserProfile, String> currentSessionInfo = sessionService.getSessionData(sessionId);
         if (currentSessionInfo == null) {
