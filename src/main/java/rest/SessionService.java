@@ -42,7 +42,9 @@ public class SessionService {
 
     public void closeSession(String id) {
         if (currentSessions.get(id) != null) {
+            userSessions.get(currentSessions.get(id).getFirst()).remove(id);
             currentSessions.remove(id);
+
         }
     }
 
